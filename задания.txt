@@ -1,0 +1,210 @@
+
+Задания -------------------------------------------------
+
+по JavaScript 
+
+есть массив, добавь в конец любой текст, что бы он был всегда 
+вконце 
+
+Есть див, добавь ему ширину
+потом добавь ему цвет 
+
+Найди максимальное число
+Найди минимальное число 
+
+Сложите массив чисел 
+
+Создайте свойтство - добовляет в начало массива 
+Создайте свойство - удаляет в конце массива 
+Создайте свойство - удаляет в начале массива 
+Создайте свойство - добовляет в конце массива 
+
+Создайте - удалить элемент в массиве по индексу, 
+какое свойство используется ?
+
+
+Создайте - удалить выборочно по индексу От и До,
+если использовать одно свойство что произойдет ?
+Что будет если дописать третье  свойство ? 
+
+
+
+
+/* третья папка */
+у нас есть плохой код с точки зрения опытности, новички могут так делатьт но в такой код сложно что то доовлять 
+
+/* let word = 'night'; // morning, day, evening
+let wordRU;
+
+if(word === 'night'){
+	wordRU = 'ночь';
+}
+else if(word === 'morning'){
+	wordRU = 'утро';
+}
+else if(word === 'day'){
+	wordRU = 'день';
+}
+else if(word === 'evening'){
+	wordRU = 'вечер';
+}  */
+
+нужно делать такой 
+/*
+let en2ru = { night: 'ночь', morning: 'утро', day: 'день', evening: 'вечер' }
+let word = 'night';
+let wordRU = en2ru[word];
+console.log(wordRU);
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+советы от кости с которым я общаюсь 
+мутабельность диструктаризация
+как работают функции
+как скопировать массив 
+асинхронноть 
+как работать с дом
+map concat filter 
+спред рест -------- нужно используется часто 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Заметки по дмитрию лаврику что он говорит 
+
+дублирование коды что не нужно делать 
+я сделал так 
+let select = document.querySelectorAll('.select');
+btn.addEventListener('click', function () {
+   for (let i = 0; i < select.length; i++) {
+      if (select[i].value === '+') {
+         div.innerHTML = parseInt(inputOne.value) + parseInt(inputTwo.value);
+      } else if (select[i].value === '-') {
+         div.innerHTML = parseInt(inputOne.value) - parseInt(inputTwo.value);
+      } else if (select[i].value === '*') {
+         div.innerHTML = parseInt(inputOne.value) * parseInt(inputTwo.value);
+      } else if (select[i].value === '/') {
+         div.innerHTML = parseInt(inputOne.value) / parseInt(inputTwo.value);
+      }
+   }
+})
+
+
+дима говорит так делать нельзя потому что код дубируется, если нам нужно будет поменять на дробные то нужно будет везде переписывать parseInt на что то другое, тоесть дохрена движений 
+такой код гавно 
+
+что нужно делать, нужно выносить все в отдельные переменные что бы их уже можно было легко менять 
+тоесть 
+
+div.innerHTML = parseInt(inputOne.value) + parseInt(inputTwo.value);
+все parseInt прописываешь в новую переменную 
+let num1 = parseInt(inputOne.value);
+let num2 = parseInt(inputTwo.value);
+
+и с ними уже работать 
+
+window.onload - загружает все и тольно потом включает скрипт 
+или как делает дима через листенер 
+window.addEventListener('load', function () {
+
+});
+
+DomContentLoaded лучше чем onload 
+
+если делать через onclick, то если вызвать его  два раза,
+то выведется последний, он перезатрет первое значение .
+листенер выведет все число 
+
+был такой пример с онкликом:
+
+div.onclick = function() {
+  div.innerHTML = += 1;
+}
+div.onclick = function() {
+  div.innerHTML = += 2;
+}
+
+если будет переменная вот так в замыкании 
+
+console.log(x); тут будет undefined 
+let x = 10;
+
+И там выше будет другая let x = 10;
+
+будет undefined потому что  
+
+вроде бы поднимись и возьми что выше, но нет 
+жс анализирует этот код заранее, если дальше прописанна локальная переменная
+то ни к каким глобальным она не пойдет 
+а так как она ниже прочитать ее не сможет, то и выдас ошибку 
+
+
+если делаешь какое то событие через ад листенер и нужно всплытие
+обязательно посмотри всплывает ли это событие или нет 
+к примеру у меня был инпут если бы я поставил событие focus 
+то ни чего не сработало потому что оно не всплывает 
+тут нужно было использовать focusin оно уже всплывает 
+
+вот тот пример 
+
+let form = document.querySelector('.form');
+let btn = document.querySelector('.btn');
+let inputs = document.querySelectorAll('.check');
+
+btn.addEventListener('click', function (e) {
+
+   for (let i = 0; i < inputs.length; i++) {
+      if (inputs[i].value === '') {
+         inputs[i].classList.add('err');
+         e.preventDefault();
+      } else {
+         inputs[i].classList.remove('err');
+         return false;
+      }
+
+      form.addEventListener('focusin', changeColor);  если бы тут был focus ни чего бы не работало, оно не всплывает
+
+      function changeColor(e) {
+         if (e.target.classList.contains('check')) {
+            e.target.classList.remove('err');
+         }
+      }
+      
+   }
+
+});

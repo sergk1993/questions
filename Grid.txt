@@ -1,0 +1,465 @@
+Вопросы 
+
+GRID 
+Какие два вида гридов есть ?
+
+Что делает grid-column-start ?
+
+Что делает grid-column-end: 3; ?
+
+Отступ у грида как реализовать ? 
+
+
+
+начальное значение строки в гриде ?
+
+у нас есть сетка как он считает  с начала до конца ?
+
+Можно ли задавать span отрицательное значение ?
+
+Что такое grid-column ?
+
+Что будет если задать так ?
+grid-column: 2/ span 3;
+
+Что делает grid-row и в каком порядке ? 
+
+Что такое grid-area в каком порядке ? 
+
+Что такое grid-template-areas ?
+
+Как рястянуть колонку в право ?
+
+Как растянуть колонку в низ ?
+
+
+Можно ли менять порядок используя order ?
+
+Как можно упростиь это grid-template-columns: 20% 20% 20% 20% 20%;
+
+Что есть в разметке грида, что нет у флекса ?
+
+
+Какая разница в justify-content: ; у грида 
+
+
+Что делает justidy-item:; ?
+
+что делает flex-direction:; ?
+Что стоит по умолчанию 
+что делает row ? 
+
+Что такое grid-auto-flow ?
+
+Что такое auto ?
+
+Что такое min-content ?
+
+Что такое max-content ?
+
+Что такое minmax ?
+
+Что такое auto-fill ?
+
+В чем разница auto-fill и auto-fit ?
+
+Как писать свойства где есть репит авто фил или авто фит, и мин макс ?
+
+Что такое grid-template:; ? 
+
+
+Что такое  grid-auto-rows ? grid-auto-columns ?
+
+Что такое place-self ?
+
+что включает в себя свойство grid, речь про то что можно написать вместо grid-template-columns и тд это сокращенное свойство, и что оно в себя включает ?
+
+
+Каким свойством можно просто передвинуть блок ? 
+
+
+Каким свойством можно растянуть на определенное колличество ?
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Ответы 
+
+GRID 
+Какие два вида гридов есть ?
+display: grid;
+display: inline-grid;
+
+Отступ у грида как реализовать ? 
+grid-row-gap - вниз 
+grid-column-gap - боковые 
+grid-gap - Общие оступы 
+column-gap: 15px; отступы боковые 
+row-gap: 15px; отступы в низ 
+gap: <row-gap> / <column-gap>; общие свойства грида 
+
+
+начальное значение строки в гриде ?
+grid-column-start: 1; 
+
+у нас есть сетка как он считает  с начала до конца ?
+grid-column-start: 1; 
+grid-column-end: 3;
+
+Он считает по линиям сетки, перая линия начинается в начале, тоесть если у нас есть три ячейки, в этом примере он растянет на две ячейки 
+потому что счет начинается с начала самая первая линия потом вторая потом третья , получиться растянуть на две ячейки 
+так же и с row 
+Итого Счет идет по линиям, оброти на это внимание 
+
+Что делает grid-column-start ?
+Что делает grid-column-start: 1; ? 
+Он удлиняет в право по линиям сетки 
+
+Что делает grid-column-end: 3; ?
+Сдвигает в низ по линиям сетки 
+Если писать 
+grid-column-start: span 3; то он растянет элемен до третей линии 
+
+Можно ли задавать span отрицательное значение ?
+Нет нельзя 
+
+Что такое grid-column ?
+принимает оба значения сразу через косую черту grid-column: 2 / 4 
+grid-column-start: ; 
+grid-column-end: ;
+
+
+
+Что будет если задать так ?
+grid-column: 2/ span 3;
+есть пять кубиков 
+Первое он начнет с второй линии, второе он от третей линии пойдет на три линии дальше 
+
+Что делает grid-row и в каком порядке ? 
+содержит в себе два значения
+grid-row-start:; 
+grid-row-end:;
+
+Что такое grid-area в каком порядке ? grid-area: 1/2/4/6;
+содержит все значения старт и ров 
+grid-row-start: ; 
+grid-column-start: ;
+grid-row-end: ;
+grid-column-end: ;
+
+
+Что такое grid-template-areas ?
+Другой способ определить грид-область, - задать ей имя и определить местоположение как значения свойства grid-template-areas. Вы можете выбрать для грид-области любое имя. Например, если нам нужно создать макет согласно картинке ниже, мы можем назвать четыре основных области следующим образом:
+Запомни обьявляется grid-template-areas а в свойствах пишется grid-area
+
+grid-template-areas:
+        "header header header"
+        "content content content"
+        "a a a"
+        "footer footer footer";
+
+и потом каждому передовать одно значение пример у нас есть 8 карточек и если первому задать 
+grid-area: footer;   
+то он будет внизу растянут на три колонки 
+
+Common values:
+
+<name> – a name of your choosing
+Порядок grid-area
+<row-start> / <column-start> / <row-end> / <column-end> – can be numbers or named lines
+Alright, let's look at some real-world examples:
+
+.container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(4, 50px);
+  grid-template-areas: "header header header"
+    "nav content content"
+    "nav content content"
+    "footer footer footer";
+}
+
+#header {
+  grid-area: header;    С верху будет три колонки в право 
+}
+
+#nav {
+  grid-area: nav; ниже будет только одна ячейка в право, и две в низ, в свойствах два нава 
+  "nav content content"
+  "nav content content"
+}
+
+#content {
+  grid-area: content;  с права будет в две ячейки в право и в низ
+}
+
+#footer {
+  grid-area: footer;  в низу будет на три ячейки в право 
+}
+
+
+
+Как рястянуть колонку в право ?
+grid-column: span 1;
+1 и любое значение для растяжения 
+
+Как растянуть колонку в низ ?
+grid-row: span 1;
+1 и любое значение для растяжения 
+
+
+
+
+Можно ли менять порядок используя order ?
+Можно 
+
+Как можно упростиь это grid-template-columns: 20% 20% 20% 20% 20%;
+grid-template-columns: repeat(5, 20%).
+
+
+Что есть в разметке грида, что нет у флекса ?
+если так брать то много чего, у флекса нет репита нет fr нет двухмерного выравнивания 
+
+
+
+Какая разница в justify-content: ; у грида 
+он пишет просто start end 
+выравнивает по вертикали row 
+Так же есть свои свойства для определенных элементо justify-self:; align-self
+
+Что делает justify-content ?
+justify-content определяет, как браузер распределяет пространство между и вокруг элементов контента вдоль главной оси flex контейнера горизонтально, или вдоль строчной оси grid контейнера.
+justify-content: center;     /* Выравнивание элементов по центру */
+justify-content: start;      /* Выравнивание элементов в начале */
+justify-content: end;        /* Выравнивание элементов в конце */
+justify-content: flex-start; /* Выравнивание флекс-элементов с начала */
+justify-content: flex-end;   /* Выравнивание флекс-элементов с конца */
+justify-content: left;       /* Выравнивание элементов по левому краю */
+justify-content: right;      /* Выравнивание элементов по правому краю */
+
+
+
+Что делает justidy-item:; ?
+главные значения в игре
+center 
+top
+bottom
+stretch 
+
+
+Атрибут CSS justify-items определяет атрибут по умолчанию justify-self (en-US) для всех элементов блока, предоставляя всем им способ выравнивания по умолчанию каждого блока вдоль соответствующей оси по горизонтали
+justify-items: center;     /* Выровнять элементы по центру */
+justify-items: start;      /* Выровнять элементы в начале */
+justify-items: end;        /* Выровнять элементы в конце */
+justify-items: flex-start; /* Эквивалентно 'start'. Обратите внимание, что justify-items игнорируется в разметке Flexbox. */
+justify-items: flex-end;   /* Эквивалентно 'end'. Обратите внимание, что justify-items игнорируется в разметке Flexbox. */
+justify-items: self-start;
+justify-items: self-end;
+justify-items: left;       /* Выровнять элементы по левому краю */
+justify-items: right;      /* Выровнять элементы по правому краю */
+
+
+Так же можно прописывать в одном свойстве два этих значения 
+  display: grid;
+  grid-template: 1fr 1fr /  40% 40%;
+  justify-content: space-evenly;
+  justify-items: end;
+
+
+
+Что такое grid-auto-flow ?
+CSS-свойство управляет поведением автоматически размещаемых элементов, точно указывая, как они попадают в сетку.
+/* Ключевые свойства и значения */
+grid-auto-flow: row;
+grid-auto-flow: column;
+grid-auto-flow: dense;
+grid-auto-flow: row dense;
+grid-auto-flow: column dense;
+
+/* Глобальные значения */
+grid-auto-flow: inherit;
+grid-auto-flow: initial;
+grid-auto-flow: unset;
+
+dense
+Ключевое слово, указывающее заполнять элементами свободное пространство сетки. Это может привести к нарушению порядка, т.к. элементы будут выстраиваться не в соответствии со своим расположением, а в соответствии с размером.
+
+row
+Ключевое слово, указывающее размещать элементы, заполняя поочерёдно каждую строку и добавляя новые строки по мере необходимости. Это значение используется по умолчанию.
+
+column
+Ключевое слово, указывающее размещать элементы, заполняя поочерёдно каждый столбец и добавляя новые столбцы по мере необходимости.
+
+
+Что такое auto ?
+grid-template-columns: 1fr auto 1fr;
+будет три колонки две по 1 фр а другая будет занимать все остольное пространство
+
+Что такое min-content ?
+min-content. It represents the intrinsic minimum width of the content. For text content this means that the content will take all soft-wrapping opportunities, becoming as small as the longest word. To simplify what it does, imagine a line of text like "The very long hotdog.", than min-content will likely be the width of the word "hotdog".
+
+ grid-template-columns: 1fr 1fr min-content;   будет одна фракция другая фракция и блок который расширяется от контента как я понял, если его мало , то ячейка будет узкой или он ужимает максимально сильно перенося строки
+
+Что такое max-content ?
+max-content represents the intrinsic maximum width of the content. For text content this means that the content will not wrap at all even if it causes overflows. Imagine a line of text like “The very long hotdog.”,max-content is the width of the entire line "The very long hotdog.", and min-content, as you remember, is the width of the shortest word is "hotdog".
+
+если он макс то контент не будет переноситься как в мин, тут будет учитывать всю строку и расширяться по контенту не перенося его, как я понял 
+
+Что такое minmax ?
+minmax(min, max) первое это минимальная ширина и второе на сколько максимально он может растянуться 
+CSS has a very useful function called minmax(min, max). It does exactly what it seems like: it sets a minimum and maximum value for what the length is able to be. This is useful in combination with relative units. Like you may want a column to be only able to shrink so far.
+
+grid-template-columns: minmax(50px, 200px) 1fr;
+
+одна ячейка будет от 50 до 200, другая будет иметь одну фракцию, когда ты будешь уменьшать страницу то фракция будет такой как была, 
+а первая будет уменьшаться до 50 px тобишь он уже становиться резиновой 
+
+Что такое auto-fill ?
+auto-fill как бы говорит “я автоматически заполню строку таким количеством колонок, как это возможно с учетом заданной ширины”. auto-fill используется в связке с repeat() таким образом:
+grid-template-columns: repeat(auto-fill, 100px);  если есть только три блока, то он заполнит все что бы каждый блок был 100px, что не будет влезать то будет переноситься 
+
+
+В чем разница auto-fill и auto-fit ?
+Если вы используете auto-fit, контент будет растягиваться, чтобы заполнить ширину строки. А с auto-fill браузер позволяет пустым колонкам занимать пространство в строке, как будто они не пустые – они будут занимать пространство, даже если в них нет элементов сетки, т.е. они будут влиять на размер/ширину колонок.
+
+что бы все было резиновым нужно добовлять minmax
+
+Как писать свойства где есть репит авто фил или авто фит, и мин макс ?
+grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+
+Что такое grid-template:; ? 
+grid-template: <grid-template-rows> / <grid-template-columns>;  как я понял если два значения 
+
+grid-template: <grid-template-areas> <grid-template-rows> / <grid-template-columns>; как я понял если три значения 
+
+is a shorthand for setting grid-template-rows, grid-template-columns, and grid-template-areas in a single declaration.
+
+grid-template: 100px 150px / repeat(3, 1fr); есть такое свойство есть шесть элементов первый ряд будет 100px в высоту, 
+второй ряд будет 150 в высоту 
+
+  grid-template: 100px 1fr 100px/ 100px 1fr 100px ; вот это свойство делает так первый элемент по вертикали 100 px потом растягивает на 1fr и потом в низу 100px 
+  дальше идет горизонтально точно так же первый 100px потом 1fr потом 100px
+  короче крест на крест 
+
+можно делать так  получается первое свойство <grid-template-areas>  второе <grid-template-rows>  и третье <grid-template-columns>
+grid-template: "a a b" 50px
+                 "a a b" 100px  / 1fr 2fr 1fr;
+
+
+Короче первое свойство делает grid-template-row другое grid-template-column вроде как, но точно могу сказать что первое св делает вниз другое в право.
+ну ты понял я думаю 
+
+
+Что такое  grid-auto-rows ? grid-auto-columns ?
+Как я понял если у тебя есть например див без высоты ширины, то для них как раз есть такие свойства, они добовляются только для тех у кого размер не задан 
+тоесть прописывая grid-auto-rows: 100px; у элементов у которых нет размеров высота будет 100px 
+
+Что такое place-self ?
+place-self: <align-self> <justify-self>;
+
+что включает в себя свойство grid, речь про то что можно написать вместо grid-template-columns и тд это сокращенное свойство, и что оно в себя включает ?
+
+grid: 100px 150px / repeat(3, 1fr);
+100px это первый ряд 
+150px это второй ряд
+и всего будет три фракции на одной строке 
+
+принцип работы как у grid-template:;
+
+Второй пример 
+grid: 100px 150px / auto-flow 100px;
+
+тут так же первый ряд  будет по 100px второй по 150px и авто это свойство grid-auto-flow: column; будет работать типо колонок и ширина 100px 
+
+Еще пример 
+grid: auto-flow dense 100px / 1fr 2fr;
+
+grid-auto-flow: row dense;
+grid-auto-rows: 100px;
+grid-template-columns: 1fr 2fr;
+
+сам разберись ничего сложного нет
+
+
+Каким свойством можно просто передвинуть блок ? 
+grid-column-start: 3; передвинет на 3-ю линию 
+
+
+Каким свойством можно растянуть на определенное колличество ?
+
+grid-column-start: span 3 ;  растянет на три ячейки
+grid-row-start: span 3;
+
+
+
+
