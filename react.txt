@@ -21,11 +21,13 @@
 
 Как вставить два класса ?
 
-делай 16 урок
-https://www.youtube.com/watch?v=-mDs48HB3II&list=PLcvhF2Wqh7DNVy1OCUpG3i5lyxyBWhGZ8&index=16
+Что такое props ?
 
 
+что делает react-router-dom ?
 
+21 урок
+https://www.youtube.com/watch?v=vcGrFNXy3zk&list=PLcvhF2Wqh7DNVy1OCUpG3i5lyxyBWhGZ8&index=22
 
 
 
@@ -138,4 +140,62 @@ import classes from  "./Navbar.module.css"
 как в жс вставляют две переменные, так же и делай хоть через + или шаблонные строки 
 
 <div className={`{s.link} {s.active}`}><a href="#">News</a></div> будет файл .link.active
+
+
+Что такое props ?
+props (пропсы) — это входные данные React-компонентов, передаваемые от родительского компонента дочернему компоненту.
+
+У нас был главный MyPost 
+и в нем была папка с другой компонентой Post 
+в Post передали props 
+
+мы же подключаем компоненту Post в MyPost
+ее же специально добавили отдельно что бы код не дублировать 
+
+и в ней уже прописываем 
+<Posts message='Hi, are you'/>
+<Posts message="It's my first project"/>
+
+получится что props создаст обьект props = {message:'Hi, are you'} 
+
+если в Post вызвать console.log(props.message);
+в терминале будет 
+
+Hi, are you
+Posts.jsx:5 It's my first project
+
+
+если прописать в Post 
+
+const Posts = (props) => {
+
+    return (
+        <div className={s.item}>
+            <img src="http://img.alicdn.com/imgextra/i2/2354231645/TB2irdLcVXXXXafXXXXXXXXXXXX-2354231645.jpg" alt="" />
+
+            {props.message}  <- вот так 
+            <p>Like</p>
+        </div>
+    );
+};
+
+
+то что ты написал в MyPost
+<Posts message='Hi, are you'/>
+<Posts message="It's my first project"/>
+
+выведется на страницу, до этого ни чего не выводилось 
+
+
+
+что делает react-router-dom ?
+Пока я понял что он делает ссылки не прыгающими, нет перехода
+
+
+
+
+
+
+
+
 
