@@ -475,6 +475,7 @@ grid-row-start: span 3;
 так же как и с свойствами justify-content justify-items 
 у align-content можно делать space-between и другое 
 и можно комбинировать с align-items 
+у меня начало работать только когда я прописал высоту 
 
 
 
