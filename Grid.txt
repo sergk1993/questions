@@ -86,7 +86,7 @@ grid-column: 2/ span 3;
 Какие свойства входят в grid ? речь не про все элементы а то как можно одним свойством все сделать 
 
 
-
+Что такое place-items ?
 
 
 
@@ -517,6 +517,9 @@ grid-auto-flow
 }
 
 
+
+Что такое place-items ?
+шорткат свойств  align-items и justify-items:
 
 
 
